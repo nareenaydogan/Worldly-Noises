@@ -16,7 +16,7 @@ import com.example.wordlynoises.R;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final String[] TAB_TITLES = new String[]{"Explore", "Upload", "Profile"};
+    private static final String[] TAB_TITLES = new String[]{"Chat", "My Network", "Profile"};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -27,11 +27,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if(position==0){
-            return ExploreFragment.newInstance(0);
-        }else if (position==1){
-            return NewUploadFragment.newInstance(1);
-        }else {
+        if (position == 0) {
+            return ChatFragment.newInstance(0);
+        } else if (position == 1) {
+            return MyNetworkFragment.newInstance(1);
+        } else {
             return ProfileFragment.newInstance(2);
         }
     }
@@ -40,7 +40,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return TAB_TITLES[position];
-        //return mContext.getResources().getString(TAB_TITLES[position]);
+       // return mContext.getResources().getString(TAB_TITLES[position]);
     }
 
     @Override

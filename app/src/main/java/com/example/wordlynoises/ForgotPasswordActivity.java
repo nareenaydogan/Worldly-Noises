@@ -12,7 +12,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button loginButton;
     Button forgotPasswordButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,15 +20,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         forgotPasswordButton = findViewById(R.id.forgotPasswordSendEmailButton);
 
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 navigateToLoginPage();
             }
         });
     }
-
 
     private void navigateToLoginPage () {
 

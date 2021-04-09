@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-//login page
+// this is login page
 public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
@@ -26,20 +26,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         registerButton = findViewById(R.id.registerButton);
         loginButton = findViewById(R.id.loginButton);
         forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
         loginEmailEditText = findViewById(R.id.loginEmailEditText);
 
-
-        mySharedPref = getSharedPreferences(mySharedPrefFileName, Context.MODE_PRIVATE);
+        mySharedPref = getSharedPreferences(mySharedPrefFileName,  Context.MODE_PRIVATE);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (loginEmailEditText.getText().toString().length() != 0) {
-                    //   createNewLoggedInUser(loginEmailEditText.getText().toString(), mySharedPref.edit());
+                 //   createNewLoggedInUser(loginEmailEditText.getText().toString(), mySharedPref.edit());
                     final Intent i = new Intent(getApplicationContext(), Explore.class);
                     startActivity(i);
                     finish();
@@ -47,22 +45,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                @Override
+            public void onClick(View view) {
                 navigateToRegisterPage();
             }
         });
 
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 navigateToForgotPasswordPage();
             }
         });
 
+
     }
+
 
     @Override
     protected void onResume() {

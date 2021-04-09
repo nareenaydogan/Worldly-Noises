@@ -4,16 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-// Registration page
+// This is the registration page
 public class RegisterActivity extends AppCompatActivity {
 
     Button registerButton;
     Button loginButton;
     Button forgotPasswordButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +26,33 @@ public class RegisterActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-            navigateToLoginPage();
+            public void onClick(View view) {
+                navigateToLoginPage();
             }
         });
 
         forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-            navigateToForgotPasswordPage();
+            public void onClick(View view) {
+               navigateToForgotPasswordPage();
             }
         });
 
     }
 
-    private void navigateToLoginPage (){
-        final Intent i = new Intent(this, MainActivity.class);
+    private void navigateToLoginPage () {
+
+        final Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         finish();
 
     }
 
-    private void navigateToForgotPasswordPage (){
-        final Intent i = new Intent(this, ForgotPasswordActivity.class);
+    private void navigateToForgotPasswordPage () {
+
+        final Intent i = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
         startActivity(i);
         finish();
-    }
 
+    }
 }
