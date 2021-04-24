@@ -7,8 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wordlynoises.R;
+
+import java.util.ArrayList;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -16,6 +20,10 @@ import com.example.wordlynoises.R;
 public class ChatFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+
+
+    ArrayList<ChatItem> chatItems = new ArrayList<>();
+
 
     public static ChatFragment newInstance(int index) {
         ChatFragment fragment = new ChatFragment();
@@ -26,8 +34,7 @@ public class ChatFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -35,6 +42,28 @@ public class ChatFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_chat, container, false);
+
+
+        RecyclerView chatListView = root.findViewById(R.id.chatList);
+        insertRandomChats();
+        ChatListAdapter chatListAdapter = new ChatListAdapter(chatItems);
+
+        chatListView.setAdapter(chatListAdapter);
+        // Set layout manager to position the items
+        chatListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return root;
     }
+
+    private void insertRandomChats () {
+        int i = 0;
+
+        while (i < 5) {
+            chatItems.add(new ChatItem("Sender " + i, "Last Message"));
+            i = i + 1;
+        }
+    }
+
+
+
 }
