@@ -34,7 +34,9 @@ public class ChatFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        insertRandomChats();
     }
 
     @Override
@@ -45,7 +47,7 @@ public class ChatFragment extends Fragment {
 
 
         RecyclerView chatListView = root.findViewById(R.id.chatList);
-        insertRandomChats();
+
         ChatListAdapter chatListAdapter = new ChatListAdapter(chatItems);
 
         chatListView.setAdapter(chatListAdapter);
@@ -59,7 +61,7 @@ public class ChatFragment extends Fragment {
         int i = 0;
 
         while (i < 5) {
-            chatItems.add(new ChatItem("Sender " + i, "Last Message"));
+            chatItems.add(new ChatItem("https://i.redd.it/fi48haz3f5i21.jpg", "Sender " + i, "Last Message"));
             i = i + 1;
         }
     }
