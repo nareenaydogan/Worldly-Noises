@@ -1,9 +1,13 @@
 package com.example.wordlynoises.ui.main;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +26,12 @@ public class ChatFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
 
+    ArrayList<ChatItem> fullChatItems = new ArrayList<>();
     ArrayList<ChatItem> chatItems = new ArrayList<>();
+
+    ChatListAdapter chatListAdapter;
+    RecyclerView chatListView;
+    EditText searchChat;
 
 
     public static ChatFragment newInstance(int index) {
@@ -46,13 +55,34 @@ public class ChatFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_chat, container, false);
 
 
-        RecyclerView chatListView = root.findViewById(R.id.chatList);
+        chatListView = root.findViewById(R.id.chatList);
 
-        ChatListAdapter chatListAdapter = new ChatListAdapter(chatItems);
+        chatListAdapter = new ChatListAdapter(chatItems);
 
         chatListView.setAdapter(chatListAdapter);
         // Set layout manager to position the items
         chatListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        searchChat = root.findViewById(R.id.searchChat);
+
+        // if the user is typing something try and search for it
+        searchChat.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               // before text is changed
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+               // aftwhen text is being changed
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+              // after text is changed
+               // searchForChats(editable.toString());
+            }
+        });
 
         return root;
     }
@@ -61,11 +91,8 @@ public class ChatFragment extends Fragment {
         int i = 0;
 
         while (i < 5) {
-            chatItems.add(new ChatItem("https://i.redd.it/fi48haz3f5i21.jpg", "Sender " + i, "Last Message"));
+            chatItems.add(new ChatItem(i, "https://i.redd.it/fi48haz3f5i21.jpg", "Sender " + i, "Last Message"));
             i = i + 1;
         }
     }
-
-
-
 }

@@ -2,11 +2,13 @@ package com.example.wordlynoises.ui.main;
 
 public class ChatItem {
 
+    int id;
     String senderProfileImageUrl;
     String senderName;
     String lastMessage;
 
-    ChatItem (String senderProfileImageUrl, String senderName, String newlastMessage) {
+    ChatItem (int newId, String senderProfileImageUrl, String senderName, String newlastMessage) {
+        this.id = newId;
         this.senderName = senderName;
         this.lastMessage = newlastMessage;
         this.senderProfileImageUrl = senderProfileImageUrl;

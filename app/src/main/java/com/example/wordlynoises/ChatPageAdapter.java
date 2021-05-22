@@ -23,9 +23,10 @@ import java.util.ArrayList;
 
 public class ChatPageAdapter extends
         RecyclerView.Adapter<ChatPageAdapter.ViewHolder> {
-ArrayList<String> messages;
 
-    ChatPageAdapter(ArrayList<String> newMessages) {
+    ArrayList<ChatMessage> messages;
+
+    ChatPageAdapter(ArrayList<ChatMessage> newMessages) {
         this.messages = newMessages;
     }
 
@@ -35,7 +36,7 @@ ArrayList<String> messages;
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView messageText;
-
+        public TextView messageSender;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -44,8 +45,16 @@ ArrayList<String> messages;
             // to access the context from any ViewHolder instance.
             super(itemView);
 
+            messageSender = (TextView) itemView.findViewById(R.id.messageSender);
             messageText = (TextView) itemView.findViewById(R.id.messageText);
-               }
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        // Just as an example, return 0 or 2 depending on position
+        // Note that unlike in ListView adapters, types don't have to be contiguous
+        return this.messages.get(position).sender.equals("me") ? 0 : 1;
     }
 
     @NonNull
@@ -55,7 +64,7 @@ ArrayList<String> messages;
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View sentMessageView = inflater.inflate(R.layout.sent_message, parent, false);
+        View sentMessageView = viewType == 0 ? inflater.inflate(R.layout.sent_message, parent, false) : inflater.inflate(R.layout.received_message, parent, false);
 //receivedMessage
 
         // Return a new holder instance
@@ -65,7 +74,8 @@ ArrayList<String> messages;
 
     @Override
     public void onBindViewHolder(@NonNull ChatPageAdapter.ViewHolder holder, int position) {
-      holder.messageText.setText(this.messages.get(position));
+      holder.messageText.setText(this.messages.get(position).message);
+      holder.messageSender.setText(this.messages.get(position).sender);
     }
 
     @Override

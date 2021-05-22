@@ -20,7 +20,7 @@ public class ChatPage extends AppCompatActivity {
     EditText newMessageView;
     RecyclerView messageListView;
     ChatPageAdapter chatPageAdapter;
-    ArrayList<String> chatMessages = new ArrayList<>();
+    ArrayList<ChatMessage> chatMessages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +63,11 @@ public class ChatPage extends AppCompatActivity {
         if(newMessage.isEmpty()){
             return;
         }
-          chatMessages.add(newMessage) ;
+
+        chatMessages.add(new ChatMessage(newMessage, "me"));
+        chatMessages.add(new ChatMessage(newMessage, "Mohamed"));
         chatPageAdapter.notifyDataSetChanged();
+        messageListView.scrollToPosition(chatPageAdapter.getItemCount() - 1);
     }
 
 
