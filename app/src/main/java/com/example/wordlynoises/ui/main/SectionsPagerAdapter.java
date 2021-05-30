@@ -16,7 +16,7 @@ import com.example.wordlynoises.R;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final String[] TAB_TITLES = new String[]{"Chat", "My Network", "Profile"};
+    private static final String[] TAB_TITLES = new String[]{"Chat", "My Network", "My World", "Profile"};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -31,8 +31,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             return ChatFragment.newInstance(0);
         } else if (position == 1) {
             return MyNetworkFragment.newInstance(1);
+        }else if (position == 2) {
+            return WorldNetworkFragment.newInstance(2);
         } else {
-            return ProfileFragment.newInstance(2);
+            return ProfileFragment.newInstance(3);
         }
     }
 
@@ -46,6 +48,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 3;
+        return 4;
     }
 }
