@@ -1,6 +1,8 @@
 package com.example.wordlynoises.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -20,6 +22,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.wordlynoises.Explore;
+import com.example.wordlynoises.MainActivity;
 import com.example.wordlynoises.ProfileSettingsActivity;
 import com.example.wordlynoises.R;
 
@@ -40,6 +44,10 @@ public class ProfileFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
+    private Button logoutButton;
+    SharedPreferences mySharedPref;
+    String mySharedPrefFileName = "LOGIN_INFO";
+
     public static ProfileFragment newInstance(int index) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle bundle = new Bundle();
@@ -59,6 +67,15 @@ public class ProfileFragment extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final ImageView profileImage = root.findViewById(R.id.userProfileImage);
+        logoutButton = root.findViewById(R.id.logoutButton);
+        mySharedPref = getContext().getSharedPreferences(mySharedPrefFileName,  Context.MODE_PRIVATE);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoutUser(mySharedPref.edit());
+            }
+        });
 
         new DownloadImageTask(profileImage)
                 .execute("https://i.redd.it/fi48haz3f5i21.jpg");
@@ -77,8 +94,6 @@ public class ProfileFragment extends Fragment {
         // TODO(homework) using intent to navigate to settings activity
         Intent i = new Intent(this.getActivity(), ProfileSettingsActivity.class);
         startActivity(i);
-
-
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -103,6 +118,18 @@ public class ProfileFragment extends Fragment {
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    private void logoutUser(SharedPreferences.Editor editor) {
+        logoutButton.setEnabled(false);
+        editor.clear();
+        editor.commit();
+        editor.apply();
+        if (!mySharedPref.contains("USERNAME")) {
+            final Intent i = new Intent(getContext().getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            getActivity().finish();
         }
     }
 }
