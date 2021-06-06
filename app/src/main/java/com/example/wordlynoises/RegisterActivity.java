@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                if(response.equals("USER-FOUND")){
+                if(response.equals("USER-EXISTS")){
                     registerErrorTextView.setText(
                             "An Account with this email exists. Please use a different email.");
                 } else if (response.equals("CREATED")) {
