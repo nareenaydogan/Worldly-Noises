@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Delete Message"
-            android:background="#FF0000"
-            android:textColor="#ffff"/>
+            android:background="#d3d3d3"
+            android:textColor="#FF0000"/>
 
     </LinearLayout>
 

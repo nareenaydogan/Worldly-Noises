@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 public class util {
 
     // This your own private app name
-    private static String app_name = "levent";
+    private static String app_name = "Worldly Noises";
     // Message that shows up at the bottom of the forgot password email sent to user
     private static String app_forgot_password_message = "Thank you for choosing us for your world noise.";
     // Your company email so users can reach you when they face any issues.

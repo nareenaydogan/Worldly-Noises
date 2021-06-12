@@ -104,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
             errorTextView.setText("Please enter a valid email!");
             return;
         }
+        // check internet connection
+        if(!util.isNetworkAvailable((ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE))) {
+            errorTextView.setText("Please connect to the internet!");
+            return;
+        }
 
         loginButton.setEnabled(false);
 

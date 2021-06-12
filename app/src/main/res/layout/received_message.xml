@@ -33,7 +33,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="Sender"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="13dp" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
-                android:textColor="#FFFFFF"
+                android:textColor="#000"
                 android:text="Example message..."/>
 
         </LinearLayout>
