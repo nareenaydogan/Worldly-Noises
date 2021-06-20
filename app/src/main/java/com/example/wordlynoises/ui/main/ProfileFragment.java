@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import com.example.wordlynoises.Explore;
 import com.example.wordlynoises.MainActivity;
 import com.example.wordlynoises.ProfileSettingsActivity;
 import com.example.wordlynoises.R;
+import com.example.wordlynoises.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -67,6 +69,8 @@ public class ProfileFragment extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final ImageView profileImage = root.findViewById(R.id.userProfileImage);
+        final EditText usernameEditText = root.findViewById(R.id.userName);
+        final EditText captionEditText = root.findViewById(R.id.userCaption);
         logoutButton = root.findViewById(R.id.logoutButton);
         mySharedPref = getContext().getSharedPreferences(mySharedPrefFileName,  Context.MODE_PRIVATE);
 
@@ -77,8 +81,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        new DownloadImageTask(profileImage)
-                .execute("https://i.redd.it/fi48haz3f5i21.jpg");
+        loadUserProfile(usernameEditText, captionEditText, profileImage, util.getEmailFromSharePreferences(getActivity()));
 
         final Button settingsButton = root.findViewById(R.id.settingsButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +97,24 @@ public class ProfileFragment extends Fragment {
         // TODO(homework) using intent to navigate to settings activity
         Intent i = new Intent(this.getActivity(), ProfileSettingsActivity.class);
         startActivity(i);
+    }
+
+    private void loadUserProfile(EditText username, EditText caption, ImageView profileImage, String email) {
+        String response = "";
+
+        new DownloadImageTask(profileImage)
+                .execute("https://i.redd.it/fi48haz3f5i21.jpg");
+
+        new util.GetUserProfileTask(response, email) {
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+                ProfileInfo profileInfo = new ProfileInfo(result);
+                username.setText(profileInfo.username);
+                caption.setText(profileInfo.caption);
+            }
+        }.execute();
+
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
