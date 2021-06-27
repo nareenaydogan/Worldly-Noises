@@ -118,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 if(response.equals("USER-FOUND")){
-                    editor.putString("USERNAME", email);
+                    editor.putString("USERNAME", "Connect to internet to load username");
+                    editor.putString("CAPTION", util.default_caption_new_user);
+                    editor.putString("EMAIL", email);
                     editor.commit();
                     final Intent i = new Intent(getApplicationContext(), Explore.class);
                     startActivity(i);
