@@ -47,7 +47,7 @@ public class WorldNetworkFragment extends Fragment {
 
 
         RecyclerView worldNetworkList = root.findViewById(R.id.worldNetworkList);
-        WorldSearchUserResultAdapter worldSearchUserResultAdapter = new WorldSearchUserResultAdapter(searchUserResults, this.getActivity());
+        final WorldSearchUserResultAdapter worldSearchUserResultAdapter = new WorldSearchUserResultAdapter(searchUserResults, this.getActivity());
 
         worldNetworkList.setAdapter(worldSearchUserResultAdapter);
         // Set layout manager to position the items
@@ -74,7 +74,7 @@ public class WorldNetworkFragment extends Fragment {
         return root;
     }
 
-    private void searchForUser(String query, WorldSearchUserResultAdapter worldSearchUserResultAdapter){
+    private void searchForUser(String query, final WorldSearchUserResultAdapter worldSearchUserResultAdapter){
         if (query.trim().length() == 0){
             return;
         }

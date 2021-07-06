@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void createNewLoggedInUser (String email, String password, SharedPreferences.Editor editor) throws UnsupportedEncodingException {
+    private void createNewLoggedInUser (final String email, String password, final SharedPreferences.Editor editor) throws UnsupportedEncodingException {
 
-        String response = "";
+        final String response = "";
 
         if(!util.isNetworkAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))) {
             errorTextView.setText("Please connect to the internet!");

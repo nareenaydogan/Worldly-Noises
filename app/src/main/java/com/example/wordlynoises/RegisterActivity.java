@@ -91,9 +91,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String email, String username, String password, String confirmPassword, SharedPreferences.Editor editor) {
+    private void registerUser(final String email, final String username, String password, String confirmPassword, final SharedPreferences.Editor editor) {
         registerErrorTextView.setText("");
-        String response = "";
+        final String response = "";
         if (email.length() < 5) {
             registerErrorTextView.setText("Please Enter Valid Email!");
             return;

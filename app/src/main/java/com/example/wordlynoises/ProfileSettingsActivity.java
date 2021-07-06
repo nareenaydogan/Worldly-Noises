@@ -83,7 +83,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         currentEmail = emailEditText.getText().toString();
     }
 
-    private void updateEmail(EditText emailEditText, TextView emailUpdateErrorTextView, Button emailUpdateButton, SharedPreferences.Editor editor) {
+    private void updateEmail(final EditText emailEditText, final TextView emailUpdateErrorTextView, final Button emailUpdateButton, final SharedPreferences.Editor editor) {
         emailUpdateErrorTextView.setText("");
 
         if(emailEditText.getText().toString().trim().length() == 0) {
@@ -128,7 +128,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
     }
 
 
-    private void updatePassword(EditText passwordEditText, EditText confirmPasswordEditText, TextView passwordUpdateErrorTextView, Button passwordUpdateButton) {
+    private void updatePassword(EditText passwordEditText, final EditText confirmPasswordEditText, final TextView passwordUpdateErrorTextView, final Button passwordUpdateButton) {
         passwordUpdateErrorTextView.setText("");
 
         if(passwordEditText.getText().toString().trim().length() == 0) {

@@ -6,30 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.main.ChatFragment">
+    tools:context=".ui.main.MyNetworkFragment">
 
     <EditText
-        android:id="@+id/searchChat"
+        android:id="@+id/userNewPassword"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="@string/chat_search"
-        app:autoSizeTextType="uniform"
+        android:hint="@string/network_search"
+        android:textSize="20dp"
         android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:id="@+id/chatListLoadingStatus"
+    <LinearLayout
+        android:id="@+id/searchResultList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:hint="loading friends"
-        app:autoSizeTextType="uniform"
-        android:layout_marginLeft="10dp"/>
+        android:layout_weight="9"
+        android:orientation="vertical" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatList"
+
+    <Button
+        android:id="@+id/newRequestsButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10" />
+        android:layout_weight="1"
+        android:text="@string/new_request_button"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffff"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15dp"/>
 
 </LinearLayout>
